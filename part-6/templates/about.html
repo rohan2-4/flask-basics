@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}About - To-Do List App{% endblock %}
+
+{% block content %}
+<h1>About This Application</h1>
+
+<div style="line-height: 1.8; color: #555;">
+    <p style="margin-bottom: 20px;">
+        Welcome to the <strong>Personal To-Do List App</strong>! This is a simple task management application 
+        built with Flask as part of the Part 6 homework exercise.
+    </p>
+    
+    <h2 style="color: #333; margin-top: 30px; margin-bottom: 15px;">Features</h2>
+    <ul style="margin-left: 20px; margin-bottom: 20px;">
+        <li style="margin-bottom: 10px;">View all your tasks in one place</li>
+        <li style="margin-bottom: 10px;">Filter tasks by priority (High, Medium, Low)</li>
+        <li style="margin-bottom: 10px;">View detailed information about each task</li>
+        <li style="margin-bottom: 10px;">Add new tasks with a simple form</li>
+        <li style="margin-bottom: 10px;">Color-coded status and priority indicators</li>
+    </ul>
+    
+    <h2 style="color: #333; margin-top: 30px; margin-bottom: 15px;">Technologies Used</h2>
+    <ul style="margin-left: 20px; margin-bottom: 20px;">
+        <li style="margin-bottom: 10px;"><strong>Flask</strong> - Python web framework</li>
+        <li style="margin-bottom: 10px;"><strong>Jinja2</strong> - Template engine for dynamic HTML</li>
+        <li style="margin-bottom: 10px;"><strong>HTML/CSS</strong> - Frontend structure and styling</li>
+    </ul>
+    
+    <h2 style="color: #333; margin-top: 30px; margin-bottom: 15px;">Jinja2 Features Demonstrated</h2>
+    <ul style="margin-left: 20px; margin-bottom: 20px;">
+        <li style="margin-bottom: 10px;">✓ Template inheritance with <code style="background-color: #f4f4f4; padding: 2px 6px; border-radius: 3px;">{% raw %}{% extends %}{% endraw %}</code></li>
+        <li style="margin-bottom: 10px;">✓ Variable rendering with <code style="background-color: #f4f4f4; padding: 2px 6px; border-radius: 3px;">{% raw %}{{ }}{% endraw %}</code></li>
+        <li style="margin-bottom: 10px;">✓ For loops with <code style="background-color: #f4f4f4; padding: 2px 6px; border-radius: 3px;">{% raw %}{% for %}{% endraw %}</code></li>
+        <li style="margin-bottom: 10px;">✓ Conditional statements with <code style="background-color: #f4f4f4; padding: 2px 6px; border-radius: 3px;">{% raw %}{% if %}{% endraw %}</code></li>
+        <li style="margin-bottom: 10px;">✓ Filters like <code style="background-color: #f4f4f4; padding: 2px 6px; border-radius: 3px;">upper</code> and <code style="background-color: #f4f4f4; padding: 2px 6px; border-radius: 3px;">length</code></li>
+    </ul>
+    
+    <div style="margin-top: 40px; padding: 20px; background-color: #e3f2fd; border-left: 4px solid #2196F3; border-radius: 5px;">
+        <h3 style="color: #1976D2; margin-bottom: 10px;">📝 Learning Note</h3>
+        <p style="margin-bottom: 0;">
+            This application stores data in memory (Python list). When you restart the Flask server, 
+            all changes will be reset. In a real-world application, you would use a database like 
+            SQLite, PostgreSQL, or MongoDB to persist your data.
+        </p>
+    </div>
+</div>
+
+<div style="margin-top: 30px;">
+    <a href="/" style="background-color: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;">
+        View Tasks
+    </a>
+</div>
+{% endblock %}

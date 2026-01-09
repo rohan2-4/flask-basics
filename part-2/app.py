@@ -16,6 +16,9 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')  # Flask looks in 'templates/' folder for this file
 
+@app.route('/contact')
+def contact():
+    return render_template('contact.html') # Renders templates/contact.html
 
 @app.route('/about')
 def about():

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Task Details{% endblock %}
+
+{% block content %}
+{% if task %}
+<h1>Task Details</h1>
+
+<div style="background-color: #f9f9f9; padding: 25px; border-radius: 8px; margin-top: 20px; border-left: 4px solid #4CAF50;">
+    <div style="margin-bottom: 20px;">
+        <strong style="color: #666; display: block; margin-bottom: 5px;">Task ID:</strong>
+        <span style="font-size: 18px;"># {{ task.id }}</span>
+    </div>
+    
+    <div style="margin-bottom: 20px;">
+        <strong style="color: #666; display: block; margin-bottom: 5px;">Title:</strong>
+        <span style="font-size: 24px; color: #333;">{{ task.title }}</span>
+    </div>
+    
+    <div style="margin-bottom: 20px;">
+        <strong style="color: #666; display: block; margin-bottom: 5px;">Status:</strong>
+        {% if task.status == 'Completed' %}
+            <span style="color: white; background-color: #4CAF50; padding: 8px 15px; border-radius: 5px; font-weight: bold;">
+                ✓ {{ task.status|upper }}
+            </span>
+        {% elif task.status == 'In Progress' %}
+            <span style="color: white; background-color: #FF9800; padding: 8px 15px; border-radius: 5px; font-weight: bold;">
+                ⟳ {{ task.status|upper }}
+            </span>
+        {% else %}
+            <span style="color: white; background-color: #9E9E9E; padding: 8px 15px; border-radius: 5px; font-weight: bold;">
+                ○ {{ task.status|upper }}
+            </span>
+        {% endif %}
+    </div>
+    
+    <div style="margin-bottom: 20px;">
+        <strong style="color: #666; display: block; margin-bottom: 5px;">Priority:</strong>
+        {% if task.priority == 'High' %}
+            <span style="color: white; background-color: #f44336; padding: 8px 15px; border-radius: 5px; font-weight: bold;">
+                🔥 {{ task.priority|upper }}
+            </span>
+        {% elif task.priority == 'Medium' %}
+            <span style="color: white; background-color: #FF9800; padding: 8px 15px; border-radius: 5px; font-weight: bold;">
+                ⚡ {{ task.priority|upper }}
+            </span>
+        {% else %}
+            <span style="color: white; background-color: #4CAF50; padding: 8px 15px; border-radius: 5px; font-weight: bold;">
+                ✓ {{ task.priority|upper }}
+            </span>
+        {% endif %}
+    </div>
+</div>
+
+<div style="margin-top: 30px;">
+    <a href="/" style="background-color: #2196F3; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;">
+        ← Back to All Tasks
+    </a>
+</div>
+
+{% else %}
+<h1>Task Not Found</h1>
+<p style="color: #999; margin: 20px 0;">Sorry, the task you're looking for doesn't exist.</p>
+<a href="/" style="color: #0066cc;">Go back to home page</a>
+{% endif %}
+{% endblock %}

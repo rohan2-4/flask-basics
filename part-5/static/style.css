@@ -1,9 +1,11 @@
 /*
 =============================================================================
-Personal Website Styles
+Personal Website Styles - Enhanced Version
 =============================================================================
 This CSS file is served from the 'static' folder.
 Flask automatically serves files from static/ at /static/filename
+
+Exercise 5.3: Enhanced styling with custom color scheme and better mobile support
 =============================================================================
 */
 
@@ -29,7 +31,7 @@ body {
     min-height: calc(100vh - 160px);
 }
 
-/* Navigation */
+/* Navigation - Enhanced */
 .navbar {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     padding: 15px 30px;
@@ -37,6 +39,9 @@ body {
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .nav-brand a {
@@ -44,12 +49,17 @@ body {
     text-decoration: none;
     font-size: 24px;
     font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.nav-brand a:hover {
+    transform: scale(1.05);
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 25px;
+    gap: 15px;
 }
 
 .nav-links a {
@@ -81,12 +91,14 @@ body {
     font-size: 48px;
     color: #2d3748;
     margin-bottom: 10px;
+    animation: fadeInUp 0.6s ease;
 }
 
 .hero .title {
     font-size: 24px;
     color: #667eea;
     margin-bottom: 20px;
+    animation: fadeInUp 0.8s ease;
 }
 
 .hero .bio {
@@ -94,6 +106,18 @@ body {
     color: #718096;
     max-width: 600px;
     margin: 0 auto;
+    animation: fadeInUp 1s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Cards */
@@ -133,6 +157,11 @@ body {
     justify-content: space-between;
     margin-bottom: 5px;
     font-weight: 500;
+}
+
+.skill-name a:hover span {
+    color: #667eea;
+    text-decoration: underline;
 }
 
 .skill-bar {
@@ -193,6 +222,18 @@ body {
     border-radius: 15px;
     font-size: 12px;
     font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.tech-tag:hover {
+    background: #bee3f8;
+    transform: scale(1.05);
+}
+
+.tech-tag-highlight {
+    background: #feebc8;
+    color: #c05621;
+    font-weight: bold;
 }
 
 /* Status Badges */
@@ -219,6 +260,82 @@ body {
     color: #6b46c1;
 }
 
+/* Blog Styles - NEW for Exercise 5.2 */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+.blog-card {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    border-left: 4px solid #667eea;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    border-left-color: #764ba2;
+}
+
+.blog-header h3 {
+    color: #2d3748;
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+.blog-meta {
+    display: flex;
+    gap: 15px;
+    color: #718096;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.blog-date, .blog-author {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.blog-excerpt {
+    color: #4a5568;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.blog-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.blog-tag {
+    background: #f0f4ff;
+    color: #5a67d8;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.blog-tag:hover {
+    background: #e0e7ff;
+    transform: scale(1.05);
+}
+
+.blog-content {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #2d3748;
+}
+
 /* Buttons */
 .btn {
     display: inline-block;
@@ -227,6 +344,7 @@ body {
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .btn-primary {
@@ -269,10 +387,12 @@ body {
 .contact-item a {
     color: #667eea;
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 .contact-item a:hover {
     text-decoration: underline;
+    color: #764ba2;
 }
 
 /* Footer */
@@ -319,23 +439,95 @@ body {
     margin-bottom: 15px;
 }
 
-/* Responsive Design */
+/* Responsive Design - Enhanced for Exercise 5.3 */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
         gap: 15px;
+        padding: 15px;
     }
 
     .nav-links {
         flex-wrap: wrap;
         justify-content: center;
+        gap: 10px;
+    }
+
+    .nav-links a {
+        padding: 6px 12px;
+        font-size: 14px;
     }
 
     .hero h1 {
         font-size: 32px;
     }
 
+    .hero .title {
+        font-size: 20px;
+    }
+
     .projects-grid {
         grid-template-columns: 1fr;
+    }
+
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        padding: 20px 15px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .hero .title {
+        font-size: 18px;
+    }
+
+    .hero .bio {
+        font-size: 16px;
+    }
+
+    .nav-brand a {
+        font-size: 20px;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+/* Dark mode support (bonus) */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a202c;
+        color: #e2e8f0;
+    }
+
+    .card, .project-card, .blog-card, .hero {
+        background: #2d3748;
+        color: #e2e8f0;
+    }
+
+    .card h2, .card h3, .project-card h3, .blog-header h3 {
+        color: #e2e8f0;
+    }
+
+    .skill-bar {
+        background: #4a5568;
+    }
+
+    .info-box {
+        background: #2c5282;
+        border-color: #63b3ed;
     }
 }

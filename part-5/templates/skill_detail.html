@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if skill %}
+        {{ skill.name }} | {{ info.name }}
+    {% else %}
+        Skill Not Found | {{ info.name }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+{% if skill %}
+    <!-- Skill Found -->
+    <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 15px;">
+            <div style="flex: 1;">
+                <h2 style="border: none; padding: 0; margin-bottom: 10px;">{{ skill.name }}</h2>
+                <p style="color: #718096;">Proficiency Level: <strong>{{ skill.level }}%</strong></p>
+            </div>
+            <a href="{{ url_for('about') }}" class="btn btn-secondary">← Back to Skills</a>
+        </div>
+        
+        <!-- Skill Progress Bar -->
+        <div class="skill-bar" style="margin-top: 20px; height: 20px;">
+            <div class="skill-progress" style="width: {{ skill.level }}%;"></div>
+        </div>
+    </div>
+
+    <div class="info-box success">
+        <strong>Exercise 5.4 Complete!</strong>
+        <p>This page shows a specific skill and all projects that use it.</p>
+        <p>Route: <code>/skill/&lt;skill_name&gt;</code></p>
+    </div>
+
+    <!-- Projects Using This Skill -->
+    <div class="card">
+        <h2>Projects Using {{ skill.name }}</h2>
+        
+        {% if related_projects %}
+            <p>I've used {{ skill.name }} in the following projects:</p>
+            
+            <div class="projects-grid" style="margin-top: 20px;">
+                {% for project in related_projects %}
+                <div class="project-card">
+                    <h3>{{ project.name }}</h3>
+                    <p>{{ project.description }}</p>
+
+                    <div class="tech-tags">
+                        {% for tech in project.tech %}
+                            <span class="tech-tag {% if tech == skill.name %}tech-tag-highlight{% endif %}">
+                                {{ tech }}
+                            </span>
+                        {% endfor %}
+                    </div>
+
+                    {% if project.status == 'Completed' %}
+                        <span class="status status-completed">{{ project.status }}</span>
+                    {% elif project.status == 'In Progress' %}
+                        <span class="status status-in-progress">{{ project.status }}</span>
+                    {% else %}
+                        <span class="status status-planned">{{ project.status }}</span>
+                    {% endif %}
+
+                    <div style="margin-top: 15px;">
+                        <a href="{{ url_for('project_detail', project_id=project.id) }}" class="btn btn-primary">
+                            View Project
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>I haven't used {{ skill.name }} in any projects yet, but I'm working on it!</p>
+            <div style="margin-top: 20px;">
+                <a href="{{ url_for('projects') }}" class="btn btn-secondary">View All Projects</a>
+            </div>
+        {% endif %}
+    </div>
+
+{% else %}
+    <!-- Skill Not Found -->
+    <div class="card">
+        <div class="not-found">
+            <h2>Skill Not Found</h2>
+            <p>Sorry, the skill "{{ skill_name }}" is not in my skillset yet.</p>
+            <p style="margin-top: 20px;">
+                <a href="{{ url_for('about') }}" class="btn btn-primary">View All Skills</a>
+            </p>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

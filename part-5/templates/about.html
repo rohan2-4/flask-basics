@@ -16,12 +16,14 @@
 <!-- Skills Section -->
 <div class="card">
     <h2>My Skills</h2>
-    <p style="margin-bottom: 20px;">Here are my technical skills with proficiency levels:</p>
+    <p style="margin-bottom: 20px;">Here are my technical skills with proficiency levels. Click on any skill to see projects using it!</p>
 
     {% for skill in skills %}
     <div class="skill-item">
         <div class="skill-name">
-            <span>{{ skill.name }}</span>
+            <a href="{{ url_for('skill_detail', skill_name=skill.name) }}" style="text-decoration: none; color: inherit;">
+                <span style="cursor: pointer;">{{ skill.name }} 🔗</span>
+            </a>
             <span>{{ skill.level }}%</span>
         </div>
         <div class="skill-bar">
@@ -31,12 +33,13 @@
     {% endfor %}
 
     <div class="info-box" style="margin-top: 20px;">
-        <strong>For Loop Magic:</strong>
-        <p>The skills above are rendered using a Jinja2 for loop:</p>
+        <strong>For Loop Magic + Exercise 5.4:</strong>
+        <p>The skills above are rendered using a Jinja2 for loop, and each is now clickable!</p>
+        <p>Click any skill to see which projects use it (Exercise 5.4 complete).</p>
         <code style="display: block; margin-top: 10px; background: #edf2f7; padding: 10px; border-radius: 5px;">
-            {&percnt; for skill in skills &percnt;}<br>
-            &nbsp;&nbsp;{{ skill.name }} - {{ skill.level }}&percnt;<br>
-            {&percnt; endfor &percnt;}
+            {% raw %}{% for skill in skills %}<br>
+            &nbsp;&nbsp;{{ '{{ skill.name }}' }} - {{ '{{ skill.level }}' }}%;<br>
+            {% endfor %}{% endraw %}
         </code>
     </div>
 </div>

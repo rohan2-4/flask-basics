@@ -24,12 +24,16 @@ def profile():
         'name': 'Sarah',
         'age': 22,
         'course': 'Web Development',
+        'city': 'pune',
+        'email': 'sarah@example.com',
         'is_enrolled': True
     }
     return render_template('profile.html',  # Pass multiple variables to template
                            name=user_data['name'],
                            age=user_data['age'],
                            course=user_data['course'],
+                            city=user_data['city'],
+                            email=user_data['email'],
                            is_enrolled=user_data['is_enrolled'])
 
 
@@ -47,6 +51,18 @@ def projects():
         {'name': 'Weather App', 'status': 'Planned', 'tech': 'JavaScript'},
     ]
     return render_template('projects.html', projects=project_list)
+
+@app.route('/grades')
+def grades():
+    student_grades = [  # List of dictionaries - common pattern for database-like data
+        {'subject': 'Math', 'grade': 'A'},
+        {'subject': 'Science', 'grade': 'B+'},
+        {'subject': 'History', 'grade': 'A-'},
+        {'subject': 'Art', 'grade': 'B'},
+    ]
+    return render_template('grades.html', grades=student_grades)
+
+
 
 
 if __name__ == '__main__':

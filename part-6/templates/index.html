@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Home - To-Do List{% endblock %}
+
+{% block content %}
+<h1>My To-Do List</h1>
+
+{% if filter_priority %}
+<p style="background-color: #e7f3ff; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
+    Showing tasks with <strong>{{ filter_priority }}</strong> priority | 
+    <a href="/" style="color: #0066cc;">Show all tasks</a>
+</p>
+{% endif %}
+
+<p style="color: #666; margin-bottom: 20px;">Total Tasks: {{ tasks|length }}</p>
+
+<div style="margin-bottom: 15px;">
+    <strong>Filter by Priority:</strong>
+    <a href="/priority/High" style="color: #d32f2f; margin-left: 10px;">High</a> |
+    <a href="/priority/Medium" style="color: #f57c00; margin-left: 5px;">Medium</a> |
+    <a href="/priority/Low" style="color: #388e3c; margin-left: 5px;">Low</a>
+</div>
+
+{% if tasks %}
+<table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+    <thead>
+        <tr style="background-color: #f0f0f0;">
+            <th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd;">ID</th>
+            <th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd;">Title</th>
+            <th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd;">Status</th>
+            <th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd;">Priority</th>
+            <th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd;">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr style="border-bottom: 1px solid #ddd;">
+            <td style="padding: 12px;">{{ task.id }}</td>
+            <td style="padding: 12px;">{{ task.title }}</td>
+            <td style="padding: 12px;">
+                {% if task.status == 'Completed' %}
+                    <span style="color: green; font-weight: bold;">✓ {{ task.status }}</span>
+                {% elif task.status == 'In Progress' %}
+                    <span style="color: orange; font-weight: bold;">⟳ {{ task.status }}</span>
+                {% else %}
+                    <span style="color: gray;">○ {{ task.status }}</span>
+                {% endif %}
+            </td>
+            <td style="padding: 12px;">
+                {% if task.priority == 'High' %}
+                    <span style="color: red; font-weight: bold;">{{ task.priority|upper }}</span>
+                {% elif task.priority == 'Medium' %}
+                    <span style="color: orange;">{{ task.priority }}</span>
+                {% else %}
+                    <span style="color: green;">{{ task.priority }}</span>
+                {% endif %}
+            </td>
+            <td style="padding: 12px;">
+                <a href="/task/{{ task.id }}" style="color: #0066cc; text-decoration: none;">View Details</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p style="text-align: center; color: #999; padding: 40px;">No tasks found with this priority level.</p>
+{% endif %}
+
+<div style="margin-top: 30px;">
+    <a href="/add" style="background-color: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;">
+        + Add New Task
+    </a>
+</div>
+{% endblock %}

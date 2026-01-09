@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grades - Jinja2 Variables</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f0f4f8;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2d3748; }
+        nav {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #edf2f7;
+            border-radius: 5px;
+        }
+        nav a {
+            margin-right: 15px;
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover { color: #2b6cb0; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            text-align:left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #edf2f7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="/">Home</a>
+            <a href="/profile">Profile</a>
+            <a href="/skills">Skills</a>
+            <a href="/projects">Projects</a>
+            <a href="/grades">Grades</a>
+        </nav>
+
+        <h1>Student Grades</h1>
+
+        <!-- Table of grades using a for loop -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for grade in grades %}
+                <tr>
+                    <td>{{ grade.subject }}</td>
+                    <td>{{ grade.grade }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- How it works -->
+        <h2>How It Works</h2>
+        <p>In the Flask app, we pass a list of dictionaries:</p>
+
+        <div class="code-example">
+return render_template('grades.html',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;grades=[<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'subject': 'Math', 'grade': 'A'},<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'subject': 'Science', 'grade': 'B+'},<br>&nbsp;&nbsp;&nbsp;&nbsp;])
+        </div>
+
+        <!-- Looping through data -->
+        <h2>Jinja2 For Loop</h2>
+        <p>We use a Jinja2 for loop to display each grade:</p>
+
+        <div class="code-example">
+&#123;% for grade in grades %&#125;<br>&lt;tr&gt;<br>&lt;td&gt;&#123;&#123; grade.subject &#125;&#125;&lt;/td&gt;<br>&lt;td&gt;&#123;&#123; grade.grade &#125;&#125;&lt;/td&gt;<br>&lt;/tr&gt;<br>&#123;% endfor %&#125;
+        </div>
+
+    </div>
+
+</body>
+</html>
